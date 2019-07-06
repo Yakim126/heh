@@ -26,7 +26,7 @@ def help_message(message):
 
 
 def error(message):
-    bot.send_message(message.chat.id, 'По твоему запросу не не найдено результаты поиска, введи корректный запрос')
+    bot.send_message(message.chat.id, 'По твоему запросу не найдено результаты поиска, введи корректный запрос')
 
 def google(q):
     s = requests.Session()
