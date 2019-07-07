@@ -26,7 +26,7 @@ def help_message(message):
 
 
 def error(message):
-    bot.send_message(message.chat.id, 'По твоему запросу не yt найдено результаты поиска, введи корректный запрос')
+    bot.send_message(message.chat.id, 'По твоему запросу не найдено результаты поиска, введи корректный запрос')
 
 def google(q):
     s = requests.Session()
@@ -42,12 +42,14 @@ def google(q):
     if len(output) < 10:
         url + '&start=10'
         for search in soup.find_all('div', {'class': 'r'}):
-            url = search.find('a')["href"]
-            result = url
-            output.append(result)
+            while len(output) < 10:
+                url = search.find('a')["href"]
+                result = url
+                output.append(result)
         return output
     else:
         return output
+
 
 
 @bot.message_handler(commands=['google'])
