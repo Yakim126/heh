@@ -25,9 +25,6 @@ def help_message(message):
     bot.send_message(message.chat.id, 'Чтобы начать гуглить введи команду: /google ')
 
 
-def error(message):
-    bot.send_message(message.chat.id, 'По твоему запросу не найдено результаты поиска, введи корректный запрос')
-
 def google(q):
     s = requests.Session()
     q = '+'.join(q.split())
