@@ -37,16 +37,24 @@ def google(q):
         result = url
         output.append(result)
     if len(output) < 10:
-        url + '&start=10'
-        for search in soup.find_all('div', {'class': 'r'}):
-            while len(output) < 10:
-                url = search.find('a')["href"]
-                result = url
-                output.append(result)
+        url = 'https://www.google.com/search?q=' + q
+        ifLen10(url, output)
         return output
     else:
         return output
 
+
+def ifLen10(url, output):
+    url += '&start=10'
+    s = requests.Session()
+    r = s.get(url, headers=headers_Get)
+    soup = BeautifulSoup(r.text, "html.parser")
+    for search in soup.find_all('div', {'class': 'r'}):
+        url = search.find('a')["href"]
+        result = url
+        if len(output) < 10:
+            output.append(result)
+    return output
 
 
 @bot.message_handler(commands=['google'])
