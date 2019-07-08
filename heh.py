@@ -9,47 +9,38 @@ headers_Get = {
     }
 
 
-@bot.message_handler(commands = ['start'])
+@bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, 'Hello, you wrote me a command: /start')
     bot.send_message(message.chat.id, 'I ma a bot which find for you any query in Google search!')
     bot.send_message(message.chat.id, 'Enter a command: /google')
 
 
-@bot.message_handler(commands = ['help'])
+@bot.message_handler(commands=['help'])
 def help_message(message):
     bot.send_message(message.chat.id, 'For search enter a command: /google ')
 
 
 def google(q):
-    s = requests.Session()
     q = '+'.join(q.split())
     url = 'https://www.google.com/search?q=' + q
-    r = s.get(url, headers = headers_Get)
-    soup = BeautifulSoup(r.text, "html.parser")
     output = []
-    for search in soup.find_all('div', {'class':'r'}):
-        url = search.find('a')["href"]
-        result = url
-        output.append(result)
-    if len(output) < 10:
-        url = 'https://www.google.com/search?q=' + q
-        ifLen10(url, output)
-        return output
-    else:
-        return output
+    output1 = ifLenSmaller10(url, output)
+    if len(output1) == 10:
+        return ifLenSmaller10(url, output)
+    if len(output1) < 10:
+        url += '&start=10'
+        return ifLenSmaller10(url, output1)
 
 
-def ifLen10(url, output):
-    url += '&start=10'
+def ifLenSmaller10(url, output):
     s = requests.Session()
     r = s.get(url, headers=headers_Get)
     soup = BeautifulSoup(r.text, "html.parser")
     for search in soup.find_all('div', {'class': 'r'}):
         url = search.find('a')["href"]
         result = url
-        if len(output) < 10:
-            output.append(result)
+        output.append(result)
     return output
 
 
@@ -57,7 +48,6 @@ def ifLen10(url, output):
 def messageSearch(message):
     send = bot.send_message(message.chat.id, 'Enter the query!')
     bot.register_next_step_handler(send, heh)
-
 
 def heh(message):
     for i in range(10):
