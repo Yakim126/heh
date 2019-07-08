@@ -20,13 +20,26 @@ def help_message(message):
     bot.send_message(message.chat.id, 'For search enter a command: /google ')
 
 
+@bot.message_handler(commands=['google'])
+def message_search(message):
+    send = bot.send_message(message.chat.id, 'Enter the query!')
+    bot.register_next_step_handler(send, output_result)
+
+
+def output_result(message):
+    for i in range(10):
+        bot.send_message(message.chat.id, 'Website number: ' + str(i+1))
+        bot.send_message(message.chat.id, google(message.text)[i])
+        i += 1
+
+
 def google(query):
     query = '+'.join(query.split())
     url = 'https://www.google.com/search?q=' + query
     output = []
     output_save = ifLenSmaller10(url, output)
     if len(output_save) == 10:
-        return ifLenSmaller10(url, output)
+        return output
     if len(output_save) < 10:
         url += '&start=10'
         return ifLenSmaller10(url, output_save)
@@ -41,18 +54,6 @@ def ifLenSmaller10(url, output):
         output.append(url)
     return output
 
-
-@bot.message_handler(commands=['google'])
-def message_search(message):
-    send = bot.send_message(message.chat.id, 'Enter the query!')
-    bot.register_next_step_handler(send, output_result)
-
-
-def output_result(message):
-    for i in range(10):
-        bot.send_message(message.chat.id, 'Website number: ' + str(i+1))
-        bot.send_message(message.chat.id, google(message.text)[i])
-        i += 1
 
 bot.polling(none_stop=True, interval=0)
 
