@@ -22,8 +22,7 @@ def google(q):
         for search in soup.find_all('div', {'class': 'r'}):
             while len(output) < 10:
                 url = search.find('a')["href"]
-                result = url
-                output.append(result)
+                output.append(url)
         return output
     else:
         return output
@@ -31,3 +30,4 @@ def google(q):
 
 
 print(len(google(inp)))
+print(google(inp))

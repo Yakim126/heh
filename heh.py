@@ -37,15 +37,14 @@ def google(query):
     query = '+'.join(query.split())
     url = 'https://www.google.com/search?q=' + query
     output = []
-    output_save = ifLenSmaller10(url, output)
+    output_save = read_data(url, output)
     if len(output_save) == 10:
         return output
-    if len(output_save) < 10:
-        url += '&start=10'
-        return ifLenSmaller10(url, output_save)
+    url += '&start=10'
+    return read_data(url, output_save)
 
 
-def ifLenSmaller10(url, output):
+def read_data(url, output):
     session = requests.Session()
     request = session.get(url, headers=headers_Get)
     soup = BeautifulSoup(request.text, "html.parser")
