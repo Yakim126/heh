@@ -1,9 +1,8 @@
 import requests
-from bs4 import BeautifulSoup
 import telebot
+from bs4 import BeautifulSoup
 
 bot = telebot.TeleBot('859071138:AAGbzXZ7cSfrQdUMxjaKBOA20VY7i_WgzbM');
-
 headers_Get = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
     }
@@ -21,35 +20,35 @@ def help_message(message):
     bot.send_message(message.chat.id, 'For search enter a command: /google ')
 
 
-def google(q):
-    q = '+'.join(q.split())
-    url = 'https://www.google.com/search?q=' + q
+def google(query):
+    query = '+'.join(query.split())
+    url = 'https://www.google.com/search?q=' + query
     output = []
-    output1 = ifLenSmaller10(url, output)
-    if len(output1) == 10:
+    output_save = ifLenSmaller10(url, output)
+    if len(output_save) == 10:
         return ifLenSmaller10(url, output)
-    if len(output1) < 10:
+    if len(output_save) < 10:
         url += '&start=10'
-        return ifLenSmaller10(url, output1)
+        return ifLenSmaller10(url, output_save)
 
 
 def ifLenSmaller10(url, output):
-    s = requests.Session()
-    r = s.get(url, headers=headers_Get)
-    soup = BeautifulSoup(r.text, "html.parser")
+    session = requests.Session()
+    request = session.get(url, headers=headers_Get)
+    soup = BeautifulSoup(request.text, "html.parser")
     for search in soup.find_all('div', {'class': 'r'}):
         url = search.find('a')["href"]
-        result = url
-        output.append(result)
+        output.append(url)
     return output
 
 
 @bot.message_handler(commands=['google'])
-def messageSearch(message):
+def message_search(message):
     send = bot.send_message(message.chat.id, 'Enter the query!')
-    bot.register_next_step_handler(send, heh)
+    bot.register_next_step_handler(send, output_result)
 
-def heh(message):
+
+def output_result(message):
     for i in range(10):
         bot.send_message(message.chat.id, 'Website number: ' + str(i+1))
         bot.send_message(message.chat.id, google(message.text)[i])
