@@ -6,7 +6,7 @@
   Build #PC-191.7479.30, built on May 29, 2019
 
 ### Настройка окружения для PyCharm 2019.1.3 (Community Edition)
-В окне PyCharm, на панели инструментов небходимо нажать: VCS -> Checkout from Version Control -> Git, далее нужно ввести URL репозитория: https://github.com/Yakim126/heh и после этого нажать кнопку : "Clone". Как проект загрузится, в терминале Pycharm необходимо ввести команду: pip install -r requirements.txt , для установки
+В окне PyCharm, на панели инструментов небходимо нажать: VCS -> Checkout from Version Control -> Git, далее нужно ввести URL репозитория: https://github.com/Yakim126/heh и после этого нажать кнопку : "Clone". Когда проект загрузится, в терминале PyCharm необходимо ввести команду: pip install -r requirements.txt , для установки
 локальных модулей, требуемых для проекта.
  
 ### Использование
