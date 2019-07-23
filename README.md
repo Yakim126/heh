@@ -1,13 +1,9 @@
 # GoogleSearch Bot
-### Описание
-Бот-поисковик в Google. Выдает первые 10 результатов поиска. Написан на языке программирования Python, версии 3.6.7.
-Используемая среда разработки: 
-  PyCharm 2019.1.3 (Community Edition)
-  Build #PC-191.7479.30, built on May 29, 2019
+### Description
+Bot search engine on Google. Displays the first 10 search results. Written in the Python programming language, version 3.6.7. Development environment used: PyCharm 2019.1.3 (Community Edition) Build # PC-191.7479.30, built May 29, 2019
 
-### Настройка окружения для PyCharm 2019.1.3 (Community Edition)
-В окне PyCharm, на панели инструментов небходимо нажать: VCS -> Checkout from Version Control -> Git, далее нужно ввести URL репозитория: https://github.com/Yakim126/heh и после этого нажать кнопку : "Clone". Когда проект загрузится, в терминале PyCharm необходимо ввести команду: pip install -r requirements.txt , для установки
-локальных модулей, требуемых для проекта.
- 
-### Использование
-Для того чтобы начать пользоваться нужно в поиске чатов, в телеграмме, ввести тег бота: @TestPythonGoogleSearchBot. Для того чтобы начать поиск необходимо ввести команду: /google, после выдачи сообщения "Введи запрос", ввести желаемый запрос, который хочешь найти в гугл. После этого выдаст первые 10 результатов поиска. Для ввода нового запроса необходимо каждый раз вводить команду: /google
+### Setting up an environment for PyCharm 2019.1.3 (Community Edition)
+In the PyCharm window on the toolbar, click: VCS -> Checkout from version control system -> Git, and then add the repository URL: https://github.com/Yakim126/heh and then click: "Clone". When the project loads, in the PyCharm terminal, enter the following command: pip install -r needs.txt, to install the local modules needed for the project.
+
+### Using
+To start using, you need enter the bot tag in search in chat rooms, in a telegram: @TestPythonGoogleSearchBot. Then you must input command: /google? after then ou can see the message "Enter a query", enter the query that you want to find in google. After that will give the first 10 search results. To enter a new request, you must enter the command every time: /google
