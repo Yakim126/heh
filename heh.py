@@ -55,4 +55,3 @@ def read_data(url, output):
 
 
 bot.polling(none_stop=True, interval=0)
-
