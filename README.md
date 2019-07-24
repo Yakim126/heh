@@ -1,4 +1,13 @@
 # GoogleSearch Bot
+### Modules, that are used in the project:
+  BeautifulSoup4. Version 4.7.1
+  lxml. Version 4.3.4
+  pyTelegramBotAPI. Version 3.6.6
+  Requests. Version 2.7.0
+  Soupsieve. Version 1.9.1
+  Telebot. Version 0.0.3
+  Urllib3. Version 1.25.3
+
 ### Description
 Bot search engine on Google. Displays the first 10 search results. Written in the Python programming language, version 3.6.7. Development environment used: PyCharm 2019.1.3 (Community Edition) Build # PC-191.7479.30, built May 29, 2019
 
